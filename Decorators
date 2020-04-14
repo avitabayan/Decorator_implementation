@@ -1,0 +1,51 @@
+Decorators:
+ To know decorators we have to get clear about first class functions and closure.
+ What is a first class function? First class functions allow us to tree functions like any other object.We can pass functions as an argument to any other functions, we can return functions and we can assign functions to variables.
+ Now Closures allow us to take advantage of first class functions and return an inner function that remembers and has access to variables local to the scope in which they were created.
+ Example:
+ def outer_function():
+	message = 'Hi'
+	
+	def inner_function():
+		print(message)
+	return inner_function()
+	
+outer_function()
+
+Here we have created a "outer_function()" and a local variable "message", then we have created a "inner_function()" within the "outer_function()", now the message variable wasn't created within the inner_function() but inner_function() does have access to it.
+Now if we execute the "outer_function()", then it gives output as: Hi. What it does is sets the message variable and runs the inner_function() and executes the inner_function().
+
+Now, if we edit the above example as:
+ def outer_function():
+	message = 'Hi'
+	
+	def inner_function():
+		print(message)
+	return inner_function()
+	
+my_func = outer_function()
+
+and we are executing my_func() 3 times then it will give output as:
+Hi
+Hi
+Hi
+
+it is giving output multiple times, this is what closure is, it remembers the "message" variable even after the "outer_function()" has finished executing.
+
+But now let's move on to decorators,
+What is a decorator? A decorator is a function that takes another function as an argument,add some kind of functionality and then returns another function.All of these without altering the source code of the original function that you've passed in.
+Example:
+Now, in decorators all we need to is replace the "outer_function()" to "decorator_function(message)" and replace the "return function" with "wrapper_function()",
+Fo Example:
+ def outer_function(): # replacing this statement to decorator function
+ def decorator_function('original_function')
+	message = 'Hi'
+	
+	def wrapper_function():
+	#rint(message)
+	return wrapper_function()
+	
+my_func = wrapper_function()
+
+hi_func = outer_function('Hi')
+hi_func = 
